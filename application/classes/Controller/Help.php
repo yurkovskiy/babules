@@ -4,9 +4,10 @@ class Controller_Help extends Controller_Common {
 
 	public function action_about() {
 		if (!Auth::instance()->logged_in()) {
-			$this->request->redirect("login");
+			$this->redirect("login");
 		}
 		$content = View::factory("admin/help/about");
+		$content->ref_uri = $this->request->referrer();
 		$this->template->content = $content;
 	}
 

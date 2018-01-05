@@ -62,7 +62,7 @@ abstract class Controller_Commonentity extends Controller_Common
 	{
 		if (!Auth::instance()->logged_in())
 		{
-			$this->redirect("admin/login");
+			$this->redirect("login");
 		}
 		else
 		{
