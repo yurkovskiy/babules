@@ -1,0 +1,4 @@
+/system/*
+/application/logs/*
+/application/cache/*
+/modules/*
