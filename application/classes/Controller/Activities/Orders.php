@@ -96,8 +96,18 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$endDate = $this->request->post("end_date");
 		$operationType = $this->request->post("operation_type");
 		$category_id = $this->request->post("category_id");
+		$category_name = "";
 		
-		if ($category_id == "null")
+		if ($category_id != "null")
+		{
+			$category_model = Model::factory("Categories")->getRecord($category_id);
+			foreach ($category_model as $category)
+			{
+				$category_name = $category->category_name;
+			}
+			unset($category_model);		
+		}
+		else 
 		{
 			$category_id = null;
 		}
@@ -118,6 +128,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$content->sumOfMoney = $sumOfMoneyByDate;
 		$content->startDate = $startDate;
 		$content->endDate = $endDate;
+		$content->category_name = (isset($category_name)) ? $category_name : "";
 		$this->template->content = $content;
 	}
 	
