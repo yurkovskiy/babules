@@ -1,13 +1,13 @@
 <!-- Report by categories -->
 <div class="page-header">
-	<h1>Звіт за період: <?php echo $startDate ?> - <?php echo $endDate?></h1>
-	<h3><?php echo "{$operationTypes[$operationType]}"?>
+	<h3>Звіт за період: <?php echo $startDate ?> - <?php echo $endDate?></h3>
+	<h4><?php echo "{$operationTypes[$operationType]}"?>
 	<?php 
 		if ($category_name != "") {
 			echo ": <span>[{$category_name}]</span>\n";
 		}
 	?>
-	</h3> 
+	</h4>
 </div>
 
 <script src="<?php echo URL::base()?>public/js/highcharts/highcharts.js" type="text/javascript"></script>
@@ -21,16 +21,17 @@
 	jQuery(function () {
         jQuery('#gcon').highcharts({
             chart: {
-                height: 600                
+                height: 600,
+                type: 'areaspline'
             },
             title: {
                 text: 'Розподіл витрат за період [По датам]'
             },
 
-            tooltip: {
-            	
+            subtitle: {
+                text: 'Кількість днів (транзакцій*): <?php echo $daysNumber?>'
             },
-            
+
             xAxis: {
                 categories: [
                 <?php 
@@ -43,11 +44,32 @@
                 labels: {
     				step: 5,
     				staggerLines: 1
+    			},
+    			title: {
+        			text: 'Дата'
     			}                
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Сума'
+                }
+            },
+
+            tooltip: {
+            	pointFormat: 'Сума: <b>{point.y}</b>'
             },
 			
             series: [{
                 name: 'babules',
+                marker: {
+                    symbol: 'circle',
+                    lineColor: '#aabbcc',
+                    fillColor: '#000000'
+                },
+                lineWidth: 3,
+                lineColor: '#ff4000',
+                fillColor: '#00bfff',
                 data: [<?php
                 foreach ($sumOfMoney as $date => $sum) 
 				{

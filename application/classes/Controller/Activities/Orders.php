@@ -129,6 +129,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$content->startDate = $startDate;
 		$content->endDate = $endDate;
 		$content->category_name = (isset($category_name)) ? $category_name : "";
+		$content->daysNumber = count($sumOfMoneyByDate);
 		$this->template->content = $content;
 	}
 	
