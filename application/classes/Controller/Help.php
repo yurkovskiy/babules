@@ -7,7 +7,6 @@ class Controller_Help extends Controller_Common {
 			$this->redirect("login");
 		}
 		$content = View::factory("admin/help/about");
-		$content->ref_uri = $this->request->referrer();
 		$this->template->content = $content;
 	}
 
