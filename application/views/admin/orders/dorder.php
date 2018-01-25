@@ -34,10 +34,13 @@
 
             xAxis: {
                 categories: [
-                <?php 
+                <?php
+                $avg = 0; 
                 foreach ($sumOfMoney as $date => $sum) {
 					echo "'{$date}'".",";
+					$avg += $sum;
 				}
+				$avg = round(($avg / count($sumOfMoney)), 2);
                 ?>
                 ],
                 gridLineWidth: 1,
@@ -53,12 +56,24 @@
             yAxis: {
                 title: {
                     text: 'Сума'
-                }
+                },
+                plotLines:[{
+                    value: <?php echo $avg?>,
+                    color: 'green',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    zIndex: 1000,
+                    label: {
+                        text: '<b>AVG: <?php echo $avg?></b>',
+                    },
+                }],
             },
 
             tooltip: {
             	pointFormat: 'Сума: <b>{point.y}</b>'
             },
+
+            
 			
             series: [{
                 name: 'babules',

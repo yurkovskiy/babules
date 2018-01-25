@@ -9,7 +9,7 @@ class Model_Activities extends Model_Common
 {
 	
 	protected $tableName = "activities";
-	protected $fieldNames = array("activity_id", "category_id", "operation_type", "activity_sum", "activity_desc", "activity_date");
+	protected $fieldNames = array("activity_id", "category_id", "operation_type", "activity_sum", "activity_desc", "activity_date", "activity_tags");
 	
 	/**
 	 * 
