@@ -1,4 +1,4 @@
-<!-- Report by categories -->
+<!-- Dynamic Year (Years) Order -->
 <div class="page-header">
 	<h3>Звіт за період: <?php echo $startDate ?> - <?php echo $endDate?></h3>
 	<h4><?php echo "{$operationTypes[$operationType]}"?>
@@ -25,11 +25,11 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'Розподіл витрат за період [По датам]'
+                text: 'Динаміка витрат по місяцям року (років)'
             },
 
             subtitle: {
-                text: 'Кількість днів (транзакцій*): <?php echo $daysNumber?>'
+                text: ''
             },
 
             xAxis: {
@@ -108,4 +108,4 @@
 	</div>
 	<!-- /Right Row -->
 </div>
-<!-- /Report by dates -->
+<!-- /Dynamic Year (Years) Order -->

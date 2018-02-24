@@ -15,6 +15,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 	protected $orderViewFile = "admin/orders/order";
 	protected $orderGViewFile = "admin/orders/gorder";
 	protected $orderDViewFile = "admin/orders/dorder";
+	protected $orderDYViewFile = "admin/orders/dyorder";
 	protected $keyFieldName = "activity_id";
 	protected $operationTypes = array("Витрата", "Дохід");
 		
@@ -37,6 +38,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		// check submit button
 		$btn_graph = $this->request->post("btn_graph");
 		$btn_dynamic = $this->request->post("btn_dynamic");
+		$btn_dynamicyears = $this->request->post("btn_dynamicyears");
 		if (!is_null($btn_graph))
 		{
 			$this->graph_view();
@@ -47,12 +49,20 @@ class Controller_Activities_Orders extends Controller_Commonentity
 			$this->dynamic_view();
 			return;
 		}
+		if (!is_null($btn_dynamicyears))
+		{
+			$this->dynamicyears_view();
+			return;
+		}
 		else
 		{
 			$this->general_view();
 		}	
 	}
 	
+	/**
+	 * Expenses by categories for some period (pie)
+	 */
 	protected function graph_view()
 	{
 		// handle form data
@@ -69,7 +79,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 			// check if we have operations on some category
 			if (!is_numeric($sumOfMoney)) 
 			{
-				continue;				
+				continue;
 			}
 			$sumOfMoneyByCategories[$category->category_name] = $sumOfMoney;
 			unset($sumOfMoney);
@@ -89,6 +99,9 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$this->template->content = $content;
 	}
 	
+	/**
+	 * Expenses by dates for some period (spline)
+	 */
 	protected function dynamic_view()
 	{
 		// handle form data
@@ -133,6 +146,56 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$this->template->content = $content;
 	}
 	
+	/**
+	 * Dynamic expenses for some year (spline) or years (histogram)
+	 */
+	protected function dynamicyears_view()
+	{
+		// handle form data
+		$startDate = $this->request->post("start_date");
+		$endDate = $this->request->post("end_date");
+		$operationType = $this->request->post("operation_type");
+		$category_id = $this->request->post("category_id");
+		$category_name = "";
+	
+		if ($category_id != "null")
+		{
+			$category_model = Model::factory("Categories")->getRecord($category_id);
+			foreach ($category_model as $category)
+			{
+				$category_name = $category->category_name;
+			}
+			unset($category_model);
+		}
+		else
+		{
+			$category_id = null;
+		}
+	
+		$sumOfMoneyByMonthYear = array();
+	
+		$sumOfMoney = Model::factory($this->modelName)->getSumOfMoneyByMonthAndYear($operationType, $startDate, $endDate, $category_id);
+		foreach ($sumOfMoney as $item)
+		{
+			$sumOfMoneyByMonthYear[$item->my] = $item->sum;
+		}
+		unset($sumOfMoney);
+		
+		// generate view variables
+		$content = View::factory($this->orderDYViewFile);
+		$content->operationTypes = $this->operationTypes;
+		$content->operationType = $operationType;
+		$content->sumOfMoney = $sumOfMoneyByMonthYear;
+		$content->startDate = $startDate;
+		$content->endDate = $endDate;
+		$content->category_name = (isset($category_name)) ? $category_name : "";
+		$this->template->content = $content;
+	}
+	
+	
+	/**
+	 * General view - only sum [probably should be deprecated because of non-infomal)
+	 */
 	protected function general_view()
 	{
 		// get information from index form

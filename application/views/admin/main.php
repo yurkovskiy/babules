@@ -59,8 +59,6 @@ if (Auth::instance()->logged_in()) {
 							<li class="dropdown-submenu">
 								<a tabindex="-1" href="#">Звіти</a>
 								<ul class="dropdown-menu">
-									<!-- <li><a href="<?php echo URL::site('activities/orders/curmonspend')?>">Витрати за поточний місяць</a></li>
-									<li><a href="<?php echo URL::site('activities/orders/curmonearn')?>">Доходи за поточний місяць</a></li>-->
 									<li><a href="<?php echo URL::site('activities/orders/index')?>">Генератор звітів</a></li>
 								</ul>
 							</li>
