@@ -181,13 +181,21 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		}
 		unset($sumOfMoney);
 		
+		$data = null;
+		$years_count = (intval(substr($endDate, 0, 4)) - intval(substr($startDate, 0, 4))) + 1;
+		
+		for ($i = 0; $i < $years_count;$i++) {
+			$data[$i] = array_chunk($sumOfMoneyByMonthYear, 12, true);
+		}
+		
 		// generate view variables
 		$content = View::factory($this->orderDYViewFile);
 		$content->operationTypes = $this->operationTypes;
 		$content->operationType = $operationType;
-		$content->sumOfMoney = $sumOfMoneyByMonthYear;
-		$content->startDate = $startDate;
-		$content->endDate = $endDate;
+		$content->sumOfMoney = $data;
+		$content->startDate = substr($startDate, 0, 4);
+		$content->endDate = substr($endDate, 0, 4);
+		$content->years_count = $years_count;
 		$content->category_name = (isset($category_name)) ? $category_name : "";
 		$this->template->content = $content;
 	}

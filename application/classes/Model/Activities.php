@@ -72,7 +72,7 @@ class Model_Activities extends Model_Common
 		{
 			$category_query = "AND {$this->fieldNames[1]} = {$category_id} ";
 		}
-		$query = "SELECT DATE_FORMAT({$this->fieldNames[5]}, '%m-%Y') as my, SUM({$this->fieldNames[3]}) AS sum
+		$query = "SELECT DATE_FORMAT({$this->fieldNames[5]}, '%Y-%m') as my, SUM({$this->fieldNames[3]}) AS sum
 		FROM {$this->tableName}
 		WHERE {$this->fieldNames[2]} = {$operationType} {$category_query}
 		AND YEAR({$this->fieldNames[5]}) BETWEEN YEAR('{$startDate}') AND YEAR('{$endDate}')

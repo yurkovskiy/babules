@@ -18,86 +18,52 @@
 		
 	<!--  JS Insertion for HC -->
 	<script type="text/javascript">
-	jQuery(function () {
-        jQuery('#gcon').highcharts({
-            chart: {
-                height: 600,
-                type: 'areaspline'
-            },
-            title: {
-                text: 'Динаміка витрат по місяцям року (років)'
-            },
-
-            subtitle: {
-                text: ''
-            },
-
-            xAxis: {
-                categories: [
-                <?php
-                $full_sum = 0;
-                $avg = 0; 
-                foreach ($sumOfMoney as $date => $sum) {
-					echo "'{$date}'".",";
-					$full_sum += $sum;
+	jQuery(function() {
+		jQuery("#gcon").highcharts({
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Динаміка витрат в році (по рокам)'
+			},
+			xAxis: {
+				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				crosshair: true
+			},
+			yAxis: {
+				min: 0.0,
+				title: {
+					text: 'Сума'
 				}
-				$avg = round(($full_sum / count($sumOfMoney)), 2);
-                ?>
-                ],
-                gridLineWidth: 1,
-                labels: {
-    				step: 5,
-    				staggerLines: 1
-    			},
-    			title: {
-        			text: 'Дата'
-    			}                
-            },
-
-            yAxis: {
-                title: {
-                    text: 'Сума (за період = <?php echo $full_sum?> грн.)'
-                },
-                plotLines:[{
-                    value: <?php echo $avg?>,
-                    color: 'green',
-                    dashStyle: 'shortdash',
-                    width: 2,
-                    zIndex: 1000,
-                    label: {
-                        text: '<b>AVG: <?php echo $avg?></b>',
-                    },
-                }],
-            },
-
-            tooltip: {
-            	pointFormat: 'Сума: <b>{point.y}</b>'
-            },
-
-            
-			
-            series: [{
-                name: 'babules',
-                marker: {
-                    symbol: 'circle',
-                    lineColor: '#aabbcc',
-                    fillColor: '#000000'
-                },
-                lineWidth: 3,
-                lineColor: '#ff4000',
-                fillColor: '#00bfff',
-                data: [<?php
-                foreach ($sumOfMoney as $date => $sum) 
-				{
-					echo "{$sum},";                	
-                }
- 
-                ?>]
-            }]
-        });
-    });
-    
-			
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.2f} грн.</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [
+				<?php
+				for ($i = 0;$i < $years_count;$i++) {
+					echo "{\n";
+					echo "name: '".(intval($startDate) + $i)."',\n";
+					echo "data: [\n";
+					foreach ($sumOfMoney[0][$i] as $k => $v) {
+						echo "{$v},";
+					}
+					echo "]},";
+				}
+				?>		
+			]
+		});
+	});
 	</script>
 	
 	<!-- Right Row -->
