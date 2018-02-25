@@ -55,7 +55,7 @@
 					echo "{\n";
 					echo "name: '".(intval($startDate) + $i)."',\n";
 					echo "data: [\n";
-					foreach ($sumOfMoney[0][$i] as $k => $v) {
+					foreach ($sumOfMoney[$i] as $k => $v) {
 						echo "{$v},";
 					}
 					echo "]},";

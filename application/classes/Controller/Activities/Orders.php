@@ -182,10 +182,20 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		unset($sumOfMoney);
 		
 		$data = null;
-		$years_count = (intval(substr($endDate, 0, 4)) - intval(substr($startDate, 0, 4))) + 1;
+		$startDate = substr($startDate, 0, 4); // start year
+		$endDate = substr($endDate, 0, 4); // end year
 		
+		$years_count = (intval($endDate) - intval($startDate)) + 1;
+		
+		// Generation data array for correct graph
 		for ($i = 0; $i < $years_count;$i++) {
-			$data[$i] = array_chunk($sumOfMoneyByMonthYear, 12, true);
+			$data[$i] = array_fill(0, 12, 0.0); // filling in of default values the data array 
+			foreach ($sumOfMoneyByMonthYear as $k => $v) {
+				$data_year = intval(substr($k, 0, 4)); // extract year from key
+				$data_month = intval(substr($k, 5, 2)); // extract month from key
+				
+				$data[$data_year - $startDate][$data_month - 1] = $v;				
+			}
 		}
 		
 		// generate view variables
@@ -193,8 +203,8 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$content->operationTypes = $this->operationTypes;
 		$content->operationType = $operationType;
 		$content->sumOfMoney = $data;
-		$content->startDate = substr($startDate, 0, 4);
-		$content->endDate = substr($endDate, 0, 4);
+		$content->startDate = $startDate;
+		$content->endDate = $endDate;
 		$content->years_count = $years_count;
 		$content->category_name = (isset($category_name)) ? $category_name : "";
 		$this->template->content = $content;
