@@ -53,7 +53,7 @@ class Model_Activities extends Model_Common
 		FROM {$this->tableName}
 		WHERE {$this->fieldNames[2]} = {$operationType} {$category_query}
 		AND {$this->fieldNames[5]} BETWEEN '{$startDate}' AND '{$endDate}'
-		GROUP BY day";
+		GROUP BY day ORDER BY activity_date";
 		$result = DB::query(Database::SELECT, $query)->as_object()->execute();
 		return $result;
 	}

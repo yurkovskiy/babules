@@ -21,7 +21,8 @@
 	jQuery(function() {
 		jQuery("#gcon").highcharts({
 			chart: {
-				type: 'column'
+				type: 'column',
+				height: '450',
 			},
 			title: {
 				text: 'Динаміка витрат в році (по рокам)'
@@ -45,8 +46,8 @@
 			},
 			plotOptions: {
 				column: {
-					pointPadding: 0.2,
-					borderWidth: 0
+					pointPadding: 0.1,
+					borderWidth: 1
 				}
 			},
 			series: [
