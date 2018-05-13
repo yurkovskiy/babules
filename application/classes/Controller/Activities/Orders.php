@@ -18,7 +18,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 	protected $orderDYViewFile = "admin/orders/dyorder";
 	protected $keyFieldName = "activity_id";
 	protected $operationTypes = array("Витрата", "Дохід");
-		
+	
 	public function action_index()
 	{
 		// get information about categories

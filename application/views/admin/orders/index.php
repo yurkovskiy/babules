@@ -2,18 +2,34 @@
 <?php
 $action = URL::base()."activities/orders/view";
 ?>
-<script src="<?php echo URL::base();?>public/js/forms.js"></script>
 <script src="<?php echo URL::base();?>public/js/calendar/calendar.js"></script>
 <script src="<?php echo URL::base();?>public/js/calendar/calendar-en.js"></script>
 <script src="<?php echo URL::base();?>public/js/calendar/calendar-setup.js"></script>
 
 <link rel="stylesheet" type="text/css" href="<?php echo URL::base();?>public/js/calendar/css/calendar-blue.css">
 
+<!-- checkDates function -->
+<script type="text/javascript">
+function checkDates(form) {
+	var startDate = parseInt((form.elements["start_date"].value.split("-").join("")));
+	var endDate = parseInt((form.elements["end_date"].value.split("-").join("")));
+	if (startDate > endDate) {
+		document.getElementsByClassName("alert")[0].style.display = "block";
+		return false;
+	}
+	return true;
+}
+</script>
+<!-- /checkDates function -->
+
 <div class="container">
 	<h3>Генератор звітів</h3>
 	<div class="well">
-	<!--<form class="form-horizontal" onsubmit="return checkForm(this)" action="<?php echo $action?>" method="POST" name="editform" id="editform">-->
-	<form class="form-horizontal" action="<?php echo $action?>" method="POST" name="editform" id="editform">
+	<form onsubmit="return checkDates(this)" class="form-horizontal" action="<?php echo $action?>" method="POST" name="editform" id="editform">	
+	    <div class="alert alert-error" style="display: none">
+      		<button type="button" class="close" data-dismiss="alert">&times;</button>
+      		<strong>Помилка!</strong> Початкова дата є більшою за кінцеву.
+    	</div>
 			
 		<!-- start_date -->
 		<div class="control-group">
