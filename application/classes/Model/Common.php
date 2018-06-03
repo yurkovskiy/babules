@@ -74,16 +74,16 @@ abstract class Model_Common extends Model
 	/**
 	 * Get number of records which matches by $letters template
 	 *
-	 * @param unknown_type $letters
-	 * @return unknown
+	 * @param string $letters
+	 * @param string $fieldName
+	 * @return int - number of records
 	 */
-	public function countRecordsByLetters($letters)
+	public function countRecordsByLetters($fieldName, $letters)
 	{
 		$letters = "%".$letters."%";
-		$query = "SELECT COUNT(*) AS count FROM {$this->tableName} WHERE {$this->fieldNames[1]} LIKE '{$letters}'";
+		$query = "SELECT COUNT(*) AS count FROM {$this->tableName} WHERE {$fieldName} LIKE '{$letters}'";
 		$count = DB::query(Database::SELECT, $query)->execute()->get('count');
 		return $count;
-		
 	}
 	
 	/**
@@ -92,20 +92,21 @@ abstract class Model_Common extends Model
 	 * @param int $limit
 	 * @param int $offset
 	 * @param string $letters
+	 * @param string $fieldName
 	 * @return MySQL Object
 	 */
-	public function getRecordsRangeByLetters($limit, $offset, $letters) 
+	public function getRecordsRangeByLetters($limit, $offset, $fieldName, $letters) 
 	{
 		$letters = "%".$letters."%";
-		$query = DB::select_array($this->fieldNames)->from($this->tableName)->where($this->fieldNames[1], "LIKE", $letters)->order_by($this->fieldNames[0], 'asc')->limit($limit)->offset($offset);
+		$query = DB::select_array($this->fieldNames)->from($this->tableName)->where($fieldName, "LIKE", $letters)->order_by($this->fieldNames[0], 'asc')->limit($limit)->offset($offset);
 		$result = $query->as_object()->execute();
 		return $result;
 	}
 	
-	public function getRecordsByLetters($letters) 
+	public function getRecordsByLetters($fieldName, $letters) 
 	{
 		$letters = "%".$letters."%";
-		$query = DB::select_array($this->fieldNames)->from($this->tableName)->where($this->fieldNames[1], "LIKE", $letters)->order_by($this->fieldNames[0], 'asc');
+		$query = DB::select_array($this->fieldNames)->from($this->tableName)->where($fieldName, "LIKE", $letters)->order_by($this->fieldNames[0], 'asc');
 		$result = $query->as_object()->execute();
 		return $result;
 	}

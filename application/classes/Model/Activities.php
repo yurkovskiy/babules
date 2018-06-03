@@ -107,4 +107,5 @@ class Model_Activities extends Model_Common
 		$result = $query->as_object()->execute();
 		return $result;
 	}
+	
 }

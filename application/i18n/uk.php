@@ -6,8 +6,11 @@ return array
 	'Activities' => 'Активності',
 	'List of categories' => 'Список категорій',
 	'Add new category' => 'Додати нову категорію',
-	'List of transactions' => 'Список транзакцій',
-	'Add new transaction' => 'Додати нову транзакцію'
+	'List of transactions' => 'Список операцій',
+	'Add new transaction' => 'Додати нову операцію',
+	'Search transactions' => 'Пошук операцій',
+	'Reports' => 'Звіти',
+	'Report Generator' => 'Генератор звітів'
 );
 
 

@@ -54,12 +54,13 @@ if (Auth::instance()->logged_in()) {
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<li><a href="<?php echo URL::site('activities/activities')?>"><?php echo __("List of transactions")?></a></li>
 							<li><a href="<?php echo URL::site('activities/activities/add')?>"><?php echo __("Add new transaction")?></a></li>
+							<li><a href="<?php echo URL::site('activities/activities/search')?>"><?php echo __("Search transactions")?></a></li>
 							
 							<!-- Sumbenu Orders -->
 							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">Звіти</a>
+								<a tabindex="-1" href="#"><?php echo __("Reports")?></a>
 								<ul class="dropdown-menu">
-									<li><a href="<?php echo URL::site('activities/orders/index')?>">Генератор звітів</a></li>
+									<li><a href="<?php echo URL::site('activities/orders/index')?>"><?php echo __("Report Generator")?></a></li>
 								</ul>
 							</li>
 							<!-- /Submenu Orders -->

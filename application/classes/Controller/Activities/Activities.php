@@ -7,10 +7,12 @@ class Controller_Activities_Activities extends Controller_Commonentity
 	protected $indexViewFile = "admin/activities/index";
 	protected $addFormViewFile = "admin/activities/aeform";
 	protected $editFormViewFile = "admin/activities/aeform";
+	protected $searchFormViewFile = "admin/activities/searchform";
+	protected $searchViewFile = "admin/activities/searchresult";
 	protected $redirectURL = "activities/activities";
 	protected $keyFieldName = "activity_id";
 	protected $operationTypes = array("Витрата", "Дохід");
-		
+	
 	public function action_index()
 	{
 		$model = null;
@@ -33,15 +35,6 @@ class Controller_Activities_Activities extends Controller_Commonentity
 			$model = Model::factory($this->modelName)->getRecordsRange($pagination->items_per_page, $pagination->offset);
 		}
 		
-		/*if (!isset($_GET['page']))
-		{
-			//if (is_null($pagination->getCurrentPage()))
-			{
-				$url = $pagination->url($pagination->getLastPage());
-				$this->request->redirect($url);
-			}
-		}*/
-										
 		// get information about categories
 		$categoriesModel = Model::factory("Categories")->getRecords();
 		$categories = array();
@@ -62,6 +55,54 @@ class Controller_Activities_Activities extends Controller_Commonentity
 		$content->itemsPerPage = $pagination->getItemsPerPage();
 		$content->operationTypes = $this->operationTypes;
 		$content->categories = $categories;
+		$content->data = $model;
+		$this->template->content = $content;
+	}
+	
+	/**
+	 * Handler for search action [Display Search form]
+	 */
+	public function action_search()
+	{
+		Session::instance()->set("pattern", null); // reset search pattern
+		$content = View::factory($this->searchFormViewFile);
+		$this->template->content = $content;		
+	}
+	
+	/**
+	 * Handler for search
+	 */
+	public function action_dosearch()
+	{
+		$session = Session::instance();
+		if (is_null($session->get("pattern")))
+		{
+			$session->set("pattern", $this->request->post("activity_desc"));
+		}
+		
+		$pattern = $session->get("pattern");
+		
+		$count = Model::factory($this->modelName)->countRecordsByLetters("activity_desc", $pattern);
+		$pagination = Pagination::factory(array('total_items' => $count, 'items_per_page' => $this->items_per_page));
+		$model = Model::factory($this->modelName)->getRecordsRangeByLetters($pagination->items_per_page, $pagination->offset, "activity_desc", $pattern);
+		
+		// get information about categories
+		$categoriesModel = Model::factory("Categories")->getRecords();
+		$categories = array();
+		
+		foreach ($categoriesModel as $category)
+		{
+			$categories[$category->category_id] = $category->category_name;
+		}
+		unset($categoriesModel);
+		
+		$page_links = $pagination->render();
+		$content = View::factory($this->searchViewFile)->bind('page_links', $page_links);
+		$content->currentPage = $pagination->getCurrentPage();
+		$content->itemsPerPage = $pagination->getItemsPerPage();
+		$content->operationTypes = $this->operationTypes;
+		$content->categories = $categories;
+		$content->pattern = $pattern;
 		$content->data = $model;
 		$this->template->content = $content;
 	}
