@@ -10,7 +10,13 @@ return array
 	'Add new transaction' => 'Додати нову операцію',
 	'Search transactions' => 'Пошук операцій',
 	'Reports' => 'Звіти',
-	'Report Generator' => 'Генератор звітів'
+	'Report Generator' => 'Генератор звітів',
+	'Categories of expences' => 'Категорії витрат / доходів',
+	'About...' => 'Про програму...',
+	'Name' => 'Назва',
+	'Description' => 'Опис',
+	'Management' => 'Управління',
+	'Exit' => 'Вихід'
 );
 
 

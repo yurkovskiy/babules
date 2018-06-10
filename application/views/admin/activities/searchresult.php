@@ -3,6 +3,7 @@
 <div class="alert alert-success">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<strong>Шаблон:</strong> <?php echo $pattern?>
+	<strong>Кількість співпадінь:</strong> <?php echo $numberOfRecords?>
 </div>
 <div class="well">
 <table class="table table-striped table-bordered">

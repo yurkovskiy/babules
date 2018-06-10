@@ -1,13 +1,13 @@
 <!-- Categories index -->
-<h2>Категорії витрат / доходів</h2>
+<h2><?php echo __("Categories of expences")?></h2>
 <div class="well">
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Назва</th>
-			<th>Опис</th>
-			<th>Управління</th>
+			<th><?php echo __("Name")?></th>
+			<th><?php echo __("Description")?></th>
+			<th><?php echo __("Management")?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,8 +24,7 @@
 			echo "<td>{$count} <!--[{$category->category_id}]--></td>\n";
 			echo "<td>{$category->category_name}</td>\n";
 			echo "<td>{$category->category_desc}</td>\n";
-			echo "<td><!--<a class=\"btn\" href=\"{$view_link}\" title=\"Перегляд\"><i class=\"icon-print\"></i></a>-->
-					  <a class=\"btn\" href=\"{$edit_link}\" title=\"Редагувати\"><i class=\"icon-edit\"></i></a>
+			echo "<td> <a class=\"btn\" href=\"{$edit_link}\" title=\"Редагувати\"><i class=\"icon-edit\"></i></a>
 					  <a class=\"btn\" href=\"#\" onclick=\"delConfirm({$category->category_id})\" title=\"Видалити\"><i class=\"icon-remove\"></i></a></td>\n";
 			echo "<script type=\"text/javascript\">\n$('#a_{$category->category_id}').popover();\n</script>\n";
 			echo "</tr>\n";

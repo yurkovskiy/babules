@@ -77,7 +77,7 @@ class Controller_Activities_Activities extends Controller_Commonentity
 		$session = Session::instance();
 		if (is_null($session->get("pattern")))
 		{
-			$session->set("pattern", $this->request->post("activity_desc"));
+			$session->set("pattern", htmlentities($this->request->post("activity_desc"), ENT_QUOTES));
 		}
 		
 		$pattern = $session->get("pattern");
@@ -103,6 +103,7 @@ class Controller_Activities_Activities extends Controller_Commonentity
 		$content->operationTypes = $this->operationTypes;
 		$content->categories = $categories;
 		$content->pattern = $pattern;
+		$content->numberOfRecords = $count;
 		$content->data = $model;
 		$this->template->content = $content;
 	}

@@ -81,7 +81,7 @@ if (Auth::instance()->logged_in()) {
 						<!-- Submenu list start -->
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<li><a href="#">Довідка</a></li>
-							<li><a href="<?php echo URL::site('help/about')?>">Про програму</a></li>
+							<li><a href="<?php echo URL::site('help/about')?>"><?php echo __("About...")?></a></li>
 						</ul>
 						<!-- /Submenu list end -->
 					</li>
@@ -96,7 +96,7 @@ if (Auth::instance()->logged_in()) {
 						</a>
 						<!-- Submenu list start -->
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li><a href="<?php echo URL::site('login/logout')?>">Вихід</a></li>
+							<li><a href="<?php echo URL::site('login/logout')?>"><?php echo __("Exit")?></a></li>
 						</ul>
 						<!-- /Submenu list end -->
 					</li>
