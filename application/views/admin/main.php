@@ -110,7 +110,7 @@ if (Auth::instance()->logged_in()) {
 ?>
 
 <!-- Content Container -->
-<div class="container"  style="padding-top: 50px">
+<div class="container-fluid"  style="padding-top: 50px">
 	<?php echo "{$content}\n";?>
 </div>
 <!-- /Content Container -->

@@ -68,7 +68,7 @@
 	</script>
 	
 	<!-- Right Row -->
-	<div class="span12">
+	<div class="span11">
 		<div id="gcon">
 			
 		</div>

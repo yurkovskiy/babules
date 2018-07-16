@@ -1,7 +1,7 @@
 <!-- Report by categories -->
 <div class="page-header">
-	<h1>Звіт за період: <?php echo $startDate ?> - <?php echo $endDate?></h1>
-	<h3><?php echo "{$operationTypes[$operationType]}"?></h3>
+	<h3>Звіт за період: <?php echo $startDate ?> - <?php echo $endDate?></h3>
+	<h4><?php echo "{$operationTypes[$operationType]}"?></h4>
 </div>
 
 <script src="<?php echo URL::base()?>public/js/highcharts/highcharts.js" type="text/javascript"></script>
@@ -10,7 +10,7 @@
 
 <div class="row-fluid">
 	<!-- Left Row -->
-	<div class="span4">
+	<div class="span3">
 		<div class="well">
 			<table id="report" class="table table-striped table-bordered">
 			<thead>
@@ -46,7 +46,7 @@
         jQuery('#gcon').highcharts({
             chart: {
                 type: 'pie',
-                //height: 600,
+                height: 600
                 //inverted: true
             },
             title: {
@@ -85,7 +85,7 @@
 	</script>
 	
 	<!-- Right Row -->
-	<div class="span8">
+	<div class="span9">
 		<div id="gcon">
 			
 		</div>
