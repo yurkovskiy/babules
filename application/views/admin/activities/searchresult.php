@@ -4,6 +4,16 @@
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<strong>Шаблон:</strong> <?php echo $pattern?>
 	<strong>Кількість співпадінь:</strong> <?php echo $numberOfRecords?>
+	<br><strong>Фільтр: </strong><span>
+		<?php
+			if (!is_null($category_ids))
+			{ 
+				foreach ($category_ids as $v)
+				{
+					echo "<b>|</b>{$categories[$v]}&nbsp;";
+				}
+			}
+		?></span>
 </div>
 <div class="well">
 <table class="table table-striped table-bordered">

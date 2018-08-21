@@ -108,4 +108,47 @@ class Model_Activities extends Model_Common
 		return $result;
 	}
 	
+	/**
+	 * @param array[int] $categody_ids
+	 * @see Model_Common::countRecordsByLetters()
+	 */
+	public function countRecordsByLetters($fieldName, $letters, $category_ids = null)
+	{
+		if (is_null($category_ids))
+		{
+			return parent::countRecordsByLetters($fieldName, $letters);
+		}
+		else 
+		{
+			$letters = "%".$letters."%";
+			$query = "SELECT COUNT(*) AS count FROM {$this->tableName} WHERE {$fieldName} LIKE '{$letters}' AND {$this->fieldNames[1]} IN {$category_ids}";
+			$count = DB::query(Database::SELECT, $query)->execute()->get('count');
+			return $count;
+		}
+	}
+	
+	/**
+	 * @param array[int] $category_ids
+	 * @see Model_Common::getRecordsRangeByLetters()
+	 */
+	public function getRecordsRangeByLetters($limit, $offset, $fieldName, $letters, $category_ids = null)
+	{
+		if (is_null($category_ids))
+		{
+			return parent::getRecordsRangeByLetters($limit, $offset, $fieldName, $letters);
+		}
+		else 
+		{
+			$letters = "%".$letters."%";
+			$query = DB::select_array($this->fieldNames)->from($this->tableName)
+			->where($fieldName, "LIKE", $letters)
+			->and_where($this->fieldNames[1], "IN", $category_ids)
+			->order_by($this->fieldNames[0], 'asc')
+			->limit($limit)
+			->offset($offset);
+			$result = $query->as_object()->execute();
+			return $result;
+		}
+	}
+	
 }

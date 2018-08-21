@@ -66,6 +66,10 @@ class Controller_Activities_Activities extends Controller_Commonentity
 	{
 		Session::instance()->set("pattern", null); // reset search pattern
 		$content = View::factory($this->searchFormViewFile);
+		
+		// get information about categories
+		$categoriesModel = Model::factory("Categories")->getRecords();
+		$content->categories = $categoriesModel;
 		$this->template->content = $content;		
 	}
 	
@@ -74,17 +78,33 @@ class Controller_Activities_Activities extends Controller_Commonentity
 	 */
 	public function action_dosearch()
 	{
+		// special variable for countRecorsByLetters
+		$categories_str = null;
+		
 		$session = Session::instance();
 		if (is_null($session->get("pattern")))
 		{
 			$session->set("pattern", htmlentities($this->request->post("activity_desc"), ENT_QUOTES));
+			$session->set("category_ids", $this->request->post("category_ids"));
 		}
 		
 		$pattern = $session->get("pattern");
-		
-		$count = Model::factory($this->modelName)->countRecordsByLetters("activity_desc", $pattern);
+		$category_ids = $session->get("category_ids");
+	
+		if (!is_null($category_ids))
+		{
+			$categories_str = "(";
+			for ($i = 0; $i < count($category_ids) - 1;$i++)
+			{
+				$categories_str.= intval($category_ids[$i]).",";
+			}
+			$categories_str.= $category_ids[count($category_ids) - 1];
+			$categories_str.= ")";
+		}
+			
+		$count = Model::factory($this->modelName)->countRecordsByLetters("activity_desc", $pattern, $categories_str);
 		$pagination = Pagination::factory(array('total_items' => $count, 'items_per_page' => $this->items_per_page));
-		$model = Model::factory($this->modelName)->getRecordsRangeByLetters($pagination->items_per_page, $pagination->offset, "activity_desc", $pattern);
+		$model = Model::factory($this->modelName)->getRecordsRangeByLetters($pagination->items_per_page, $pagination->offset, "activity_desc", $pattern, $category_ids);
 		
 		// get information about categories
 		$categoriesModel = Model::factory("Categories")->getRecords();
@@ -102,6 +122,7 @@ class Controller_Activities_Activities extends Controller_Commonentity
 		$content->itemsPerPage = $pagination->getItemsPerPage();
 		$content->operationTypes = $this->operationTypes;
 		$content->categories = $categories;
+		$content->category_ids = $category_ids;
 		$content->pattern = $pattern;
 		$content->numberOfRecords = $count;
 		$content->data = $model;

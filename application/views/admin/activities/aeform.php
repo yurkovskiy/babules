@@ -65,7 +65,7 @@ if (isset($data)) {
 		</div>
 		
 		<script type="text/javascript">
-			document.forms[0].elements["operation_type"] = <?php echo $operation_type?>;		
+			document.forms[0].elements["operation_type"].value = <?php echo $operation_type?>;		
 		</script>
 		<!-- /operation_type -->
 		

@@ -17,6 +17,22 @@ $action = $action = URL::base()."activities/activities/dosearch";
 		</div>
 		<!--/activity_desc -->
 		
+		<!-- categories list -->
+		<div class="control-group">
+			<label class="control-label" for="category_ids">Категорії фільтрування</label>
+			<div class="controls">
+				<select name="category_ids[]" id="category_ids" multiple="multiple" size="10">
+					<?php
+					foreach ($categories as $category)
+					{
+						echo "<option value=\"{$category->category_id}\">{$category->category_name}</option>\n";
+					} 
+					?>
+				</select>
+			</div>
+		</div>
+		<!-- /categories list -->
+		
 		<!-- Submit button -->
 		<div class="control-group">
 			<div class="controls">

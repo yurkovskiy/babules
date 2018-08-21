@@ -98,7 +98,11 @@ abstract class Model_Common extends Model
 	public function getRecordsRangeByLetters($limit, $offset, $fieldName, $letters) 
 	{
 		$letters = "%".$letters."%";
-		$query = DB::select_array($this->fieldNames)->from($this->tableName)->where($fieldName, "LIKE", $letters)->order_by($this->fieldNames[0], 'asc')->limit($limit)->offset($offset);
+		$query = DB::select_array($this->fieldNames)->from($this->tableName)
+			->where($fieldName, "LIKE", $letters)
+			->order_by($this->fieldNames[0], 'asc')
+			->limit($limit)
+			->offset($offset);
 		$result = $query->as_object()->execute();
 		return $result;
 	}
@@ -110,7 +114,7 @@ abstract class Model_Common extends Model
 		$result = $query->as_object()->execute();
 		return $result;
 	}
-
+	
 	/**
 	 * Get All records from $this->tableName table
 	 *
