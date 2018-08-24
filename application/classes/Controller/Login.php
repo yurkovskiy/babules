@@ -18,9 +18,9 @@ class Controller_Login extends Controller_Logincommon {
 		$postVars = $this->request->post();
 		$success = Auth::instance()->login($postVars['username'], $postVars['password']);
 		if (!$success) {
-			$_SESSION['authProblem'] = true;
+			Session::instance()->set("authProblem", 1);
 		} else {
-			unset($_SESSION['authProblem']);
+			Session::instance()->delete("authProblem");
 		}
 		$this->redirect("main");
 	}

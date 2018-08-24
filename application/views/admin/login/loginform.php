@@ -43,7 +43,7 @@ body {
 	<input type="password" class="input-block-level" placeholder="пароль" name="password">
 	<?php
 	// little spike :-)
-	if (isset($_SESSION['authProblem'])) {
+	if ((Session::instance()->get('authProblem')) == 1) {
 		echo "<div id=\"errorMsg\">Error login or password</div>\n";		
 	}
  
