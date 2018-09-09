@@ -61,6 +61,7 @@ if (Auth::instance()->logged_in()) {
 								<a tabindex="-1" href="#"><?php echo __("Reports")?></a>
 								<ul class="dropdown-menu">
 									<li><a href="<?php echo URL::site('activities/orders/index')?>"><?php echo __("Report Generator")?></a></li>
+									<li><a href="<?php echo URL::site('activities/orders/fullreportbyyears')?>"><?php echo __("Full Report By Years")?></a></li>
 								</ul>
 							</li>
 							<!-- /Submenu Orders -->

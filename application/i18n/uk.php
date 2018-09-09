@@ -11,6 +11,7 @@ return array
 	'Search transactions' => 'Пошук операцій',
 	'Reports' => 'Звіти',
 	'Report Generator' => 'Генератор звітів',
+	'Full Report By Years' => 'Повний операційний звіт по рокам',
 	'Categories of expences' => 'Категорії витрат / доходів',
 	'About...' => 'Про програму...',
 	'Name' => 'Назва',

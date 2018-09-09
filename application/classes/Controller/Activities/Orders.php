@@ -16,6 +16,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 	protected $orderGViewFile = "admin/orders/gorder";
 	protected $orderDViewFile = "admin/orders/dorder";
 	protected $orderDYViewFile = "admin/orders/dyorder";
+	protected $fullReportByYears = "admin/orders/fullreportbyyears";
 	protected $keyFieldName = "activity_id";
 	protected $operationTypes = array("Витрата", "Дохід");
 	
@@ -246,6 +247,14 @@ class Controller_Activities_Orders extends Controller_Commonentity
 		$content->endDate = $endDate;
 		$content->operationType = $operationType;
 		$content->categoryName = $category_name;
+		$this->template->content = $content;
+	}
+	
+	public function action_fullreportbyyears()
+	{
+		$model = Model::factory($this->modelName)->getFullReportOfActivitiesByYears();
+		$content = View::factory($this->fullReportByYears);
+		$content->data = $model;
 		$this->template->content = $content;
 	}
 }
