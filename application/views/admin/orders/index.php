@@ -115,9 +115,9 @@ function checkDates(form) {
 		<!-- Submit button -->
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn btn-primary" id="btn_submit" name="btn_submit" value="send">Згенерувати</button>
+				<button type="submit" class="btn btn-primary" id="btn_submit" name="btn_submit" value="send">Сума</button>
 				<button type="reset" class="btn btn-primary" id="btn_reset" name="btn_reset" value="reset">Очистити</button>
-				<button type="submit" class="btn btn-success" id="btn_graph" name="btn_graph" value="graph" >Графік</button>
+				<button type="submit" class="btn btn-success" id="btn_graph" name="btn_graph" value="graph" >По категоріям</button>
 				<button type="submit" class="btn btn-danger" id="btn_dynamic" name="btn_dynamic" value="dynamic" >По датам</button>
 				<button type="submit" class="btn btn-warning" id="btn_dynamicyears" name="btn_dynamicyears" value="dynamicyears" >Динаміка витрат</button>
 			</div>

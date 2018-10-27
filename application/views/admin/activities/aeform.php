@@ -99,6 +99,7 @@ if (isset($data)) {
 			        ifFormat       :    "%Y-%m-%d",      // format of the input field
 			        button         :    "f_trigger_ad",  // trigger for the calendar (button ID)
 			        align          :    "",           // alignment (defaults to "Bl")
+			        firstDay	   :	1,
 			        singleClick    :    true,
 			    });
 				</script>

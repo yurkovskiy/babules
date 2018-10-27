@@ -58,8 +58,7 @@
 			echo "<td>{$activity->activity_sum}</td>\n";
 			echo "<td>{$activity->activity_date}</td>\n";
 			echo "<td>{$activity->activity_desc}</td>\n";
-			echo "<td><!--<a class=\"btn\" href=\"{$view_link}\" title=\"Перегляд\"><i class=\"icon-print\"></i></a>-->
-					  <a class=\"btn\" href=\"{$edit_link}\" title=\"Редагувати\"><i class=\"icon-edit\"></i></a>
+			echo "<td><a class=\"btn\" href=\"{$edit_link}\" title=\"Редагувати\"><i class=\"icon-edit\"></i></a>
 					  <a class=\"btn\" href=\"#\" onclick=\"delConfirm({$activity->activity_id})\" title=\"Видалити\"><i class=\"icon-remove\"></i></a></td>\n";
 			echo "</tr>\n";
 			$count++;
