@@ -10,7 +10,7 @@ class Controller_Login extends Controller_Logincommon {
 			$this->template->content = $content;
 		}
 		else {
-			$this->redirect("login");
+			$this->redirect("Main");
 		}
 	}
 

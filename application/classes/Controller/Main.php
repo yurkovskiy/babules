@@ -10,7 +10,6 @@ class Controller_Main extends Controller_Common {
 			$content = View::factory('admin/frontpage/index');
 			$this->template->content = $content;
 		}
-
 	}
 
 } // Main Controller
