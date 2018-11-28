@@ -162,4 +162,11 @@ class Model_Activities extends Model_Common
 		return $result;
 	}
 	
+	public function getFullReportOfActivitiesByYearsAndOperations()
+	{
+		$query = "SELECT YEAR({$this->fieldNames[5]}) AS Y, {$this->fieldNames[2]}, SUM({$this->fieldNames[3]}) AS FullSum FROM {$this->tableName} GROUP BY YEAR({$this->fieldNames[5]}), {$this->fieldNames[2]}";
+		$result = DB::query(Database::SELECT, $query)->as_object()->execute();
+		return $result;
+	}
+	
 }

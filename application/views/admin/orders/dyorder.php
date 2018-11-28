@@ -12,7 +12,6 @@
 
 <script src="<?php echo URL::base()?>public/js/highcharts/highcharts.js" type="text/javascript"></script>
 <script src="<?php echo URL::base()?>public/js/highcharts/modules/exporting.js" type="text/javascript"></script>
-<!-- <script src="http://code.highcharts.com/highcharts-3d.js"></script>-->
 
 <div class="row-fluid">
 		

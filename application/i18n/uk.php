@@ -12,6 +12,7 @@ return array
 	'Reports' => 'Звіти',
 	'Report Generator' => 'Генератор звітів',
 	'Full Report By Years' => 'Повний операційний звіт по рокам',
+	'Full Report By Years Operations' => 'Повний операційний звіт по рокам [тип операції]',
 	'Categories of expences' => 'Категорії витрат / доходів',
 	'About...' => 'Про програму...',
 	'Name' => 'Назва',
