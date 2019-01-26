@@ -89,7 +89,7 @@ class Model_Activities extends Model_Common
 	 */
 	public function countRecordsByCategory($category_id)
 	{
-		$query = "SELECT COUNT(*) AS count FROM {$this->tableName} WHERE {$this->fieldNames[1]} = {$category_id}";
+		$query = "SELECT COUNT({$this->fieldNames[0]}) AS count FROM {$this->tableName} WHERE {$this->fieldNames[1]} = {$category_id}";
 		$count = DB::query(Database::SELECT, $query)->execute()->get('count');
 		return $count;
 	}
@@ -121,7 +121,7 @@ class Model_Activities extends Model_Common
 		else 
 		{
 			$letters = "%".$letters."%";
-			$query = "SELECT COUNT(*) AS count FROM {$this->tableName} WHERE {$fieldName} LIKE '{$letters}' AND {$this->fieldNames[1]} IN {$category_ids}";
+			$query = "SELECT COUNT({$fieldName}) AS count FROM {$this->tableName} WHERE {$fieldName} LIKE '{$letters}' AND {$this->fieldNames[1]} IN {$category_ids}";
 			$count = DB::query(Database::SELECT, $query)->execute()->get('count');
 			return $count;
 		}

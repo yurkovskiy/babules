@@ -43,6 +43,7 @@ function checkDates(form) {
 			        ifFormat       :    "%Y-%m-%d",      // format of the input field
 			        button         :    "f_trigger_sd",  // trigger for the calendar (button ID)
 			        align          :    "",           // alignment (defaults to "Bl")
+			        firstDay	   :    1,
 			        singleClick    :    true
 			    });
 				</script>
@@ -62,6 +63,7 @@ function checkDates(form) {
 			        ifFormat       :    "%Y-%m-%d",      // format of the input field
 			        button         :    "f_trigger_ed",  // trigger for the calendar (button ID)
 			        align          :    "",           // alignment (defaults to "Bl")
+			        firstDay	   :    1,
 			        singleClick    :    true
 			    });
 				</script>

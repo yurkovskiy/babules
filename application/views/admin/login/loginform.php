@@ -44,7 +44,13 @@ body {
 	<?php
 	// little spike :-)
 	if ((Session::instance()->get('authProblem')) == 1) {
-		echo "<div id=\"errorMsg\">Error login or password</div>\n";		
+		echo "<div id=\"errorMsg\">Error login or password</div>\n";
+		echo "<script type=\"text/javascript\">\n";
+		echo "setTimeout(function() {\n";
+			echo "errorMsg.style.display = \"none\";\n";
+		echo "}, 1000);\n";
+		echo "</script>\n";
+		Session::instance()->set('authProblem', 0);
 	}
  
 	?>

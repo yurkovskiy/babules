@@ -49,9 +49,10 @@
 			$count = $itemsPerPage * ($currentPage - 1) + 1;			
 		}
 		foreach ($data as $activity) {
+			$class_row = ($activity->operation_type == "1") ? "success" : "";
 			$edit_link = URL::site("activities/activities/edit")."/".$activity->activity_id;
 			$view_link = URL::site("activities/activities/view")."/".$activity->activity_id;
-			echo "<tr>\n";
+			echo "<tr class=\"{$class_row}\">\n";
 			echo "<td>{$count}</td>\n";
 			echo "<td>{$categories[$activity->category_id]}</td>\n";
 			echo "<td>{$operationTypes[$activity->operation_type]}</td>\n";
