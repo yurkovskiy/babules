@@ -11,7 +11,7 @@ class Controller_Activities_Activities extends Controller_Commonentity
 	protected $searchViewFile = "admin/activities/searchresult";
 	protected $redirectURL = "activities/activities";
 	protected $keyFieldName = "activity_id";
-	protected $operationTypes = array("Витрата", "Дохід");
+	protected $operationTypes = array("Витрата", "Спец. витрата");
 	
 	public function action_index()
 	{

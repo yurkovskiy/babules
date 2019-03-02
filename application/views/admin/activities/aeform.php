@@ -59,7 +59,7 @@ if (isset($data)) {
 			<div class="controls">
 				<select name="operation_type">
 					<option value="0">Витрата</option>
-					<option value="1">Дохід</option>
+					<option value="1">Спец. витрата</option>
 				</select>
 			</div>
 		</div>

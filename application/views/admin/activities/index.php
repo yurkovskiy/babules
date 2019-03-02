@@ -43,6 +43,7 @@
 	</thead>
 	<tbody>
 		<?php
+		$sumOnPage = 0.0;
 		$count = 1;
 		if ($currentPage != 1)
 		{
@@ -62,9 +63,13 @@
 			echo "<td><a class=\"btn\" href=\"{$edit_link}\" title=\"Редагувати\"><i class=\"icon-edit\"></i></a>
 					  <a class=\"btn\" href=\"#\" onclick=\"delConfirm({$activity->activity_id})\" title=\"Видалити\"><i class=\"icon-remove\"></i></a></td>\n";
 			echo "</tr>\n";
+			$sumOnPage += $activity->activity_sum;
 			$count++;
 		}
 		?>
+		<tr class="info">
+		    <td colspan="7"><strong>Сума на сторінці: <?php echo $sumOnPage?> грн.</strong></td>
+		</tr>
 	</tbody>
 </table>
 </div>

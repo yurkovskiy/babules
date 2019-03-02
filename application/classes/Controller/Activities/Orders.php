@@ -19,7 +19,7 @@ class Controller_Activities_Orders extends Controller_Commonentity
 	protected $fullReportByYears = "admin/orders/fullreportbyyears";
 	protected $fullReportByYearsAndOperations = "admin/orders/fullreportbyyearsandoperations";
 	protected $keyFieldName = "activity_id";
-	protected $operationTypes = array("Витрата", "Дохід");
+	protected $operationTypes = array("Витрата", "Спец. витрата");
 	
 	public function action_index()
 	{
